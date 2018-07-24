@@ -1,0 +1,99 @@
+/* MENU.php*/
+#nofind {
+    font-size: 3vw;
+    text-transform: uppercase;
+    color: red;
+    text-align: center;
+}
+
+.menu_r {
+	float: right;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+    color: #FFD700;
+}
+
+li ul {
+    display: none;
+    position:absolute;
+}
+
+li:hover ul {
+    display: block;
+}
+
+/*LIST PRODUIT*/
+.img_mini {
+    width: 200px;
+    height: 200px
+}
+
+.all_p {
+    margin-top: 15px;
+    width: 100%; height: auto;
+}
+
+.in_ligne 
+{
+    display: inline-block;
+    text-align: center;
+    border-radius: 6px;
+    border: 2px solid black;
+}
+
+/* Proidut */
+.p_box {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.img_big {
+    width: 30%;
+    height: 30%;
+}
+
+.mid_mid {
+    float: center;
+}
+
+
+table {
+    margin-top: 15px;
+    width: 50%;
+    border: 2px solid black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+.no_bord {
+    border: none;
+}
