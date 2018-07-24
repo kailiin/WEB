@@ -4,34 +4,33 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap demo</title>
-
-
-    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <title>Gestion</title>
 
 
 </head>
 
 <body>
     
-        <?php 
+<?php
+include("includeboostrap.php");	
 include("sco_auth.php");
-include("sco_header.php");
+$uid = $auth->userid;  
+$droit = false;        
+  // verifier le droit d'accéder      
+require("db_config.php");
+$db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8", $username, $password);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$SQL = "SELECT * FROM users WHERE userid=$uid AND type='sco' " ;
+$res = $db->query($SQL);        
+    if ($res->rowCount()==0) $droit=false;
+        else{
+            $droit=true;
+            }
+              
+        if( $droit){
+            include("sco_header.php");
+// fin de verif       
 ?>
  
  
@@ -53,15 +52,15 @@ include("sco_header.php");
                 <h2>Affectation</h2>
                 <p> Affectation des groupes aux modules ou des étudiants aux groupes.</p>
                  <div class="row">
-                    <a href="sco_list_affec_g_to_m.php"  class="btn btn-info">Groupes aux modules</a>
-                    <a href="sco_list_affec_e_to_g.php"  class="btn btn-info">Etudiants aux groupes</a>
+                    <a href="sco_affec_G_M.php"  class="btn btn-info">Groupes aux modules</a>
+                    <a href="sco_affec_E_G.php"  class="btn btn-info">Etudiants aux groupes</a>
                 </div>
             </div>
             
            <div class="col-xs-4">
                 <h2>Affectation du droit de saisie.</h2>
                 <p>Affectation de la saisie aux enseignants.</p>
-                <p><a href="#" class="btn btn-info">Affectation</a></p>
+                <p><a href="sco_affec_droit_saisie.php" class="btn btn-info">Affectation</a></p>
             </div>
             
             <div class="col-xs-8">
@@ -79,13 +78,17 @@ include("sco_header.php");
 
     </div>
 <?php
+            }else{
+                       	  ?>
+<div class="alert alert-danger">
+    <div align = 'center'>
+<strong><h1>Attention!</h1></strong> <br />
+		<h2>Vous n'avez pas le droit d'accéder !!!</h2><br />
+		<a href="index.php" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-home"></span> Accueille</a>
+    </div>
+</div>
+<?php
+         }
 include("footer.php");
 ?>
-    <script src="http://code.jquery.com/jquery-1.12.0.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-
-</html>
+  

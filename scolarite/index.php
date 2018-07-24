@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap demo</title>
+    <title>Site de saisie des notes</title>
 
 
     <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -44,10 +44,12 @@
         <div class="row">
             <div class="col-xs-4">
                 <h2>Scolarité</h2>
-                <p>Saisir ou mettre à jour la liste des étudiants (pour les différentes filières) ou des modules/groupes.<br />
+                <p>Saisir ou mettre à jour la liste des étudiants pour <br />
+					les différentes filières ou des modules/groupes.<br />
                     Choisir également l’enseignant qui effectuera la saisie des notes.<br />
                 </p>
-                <p><a href="sco_accueille.php" class="btn btn-success">Entrer  &raquo;</a></p>
+				<a href="sco_accueille.php" class="btn btn-block btn-primary">Entrer <span class="glyphicon glyphicon-chevron-right"></span></a>
+            
             </div>
             
             <div class="col-xs-4">
@@ -56,13 +58,15 @@
                     Saisie les notes pour un groupe.<br />
                     Correction des notes.<br />
                 </p>
-                <p><a href="ens_accueille.php" class="btn btn-success">Entrer  &raquo;</a></p>
+				<a href="ens_accueille.php" class="btn btn-block btn-primary">Entrer <span class="glyphicon glyphicon-chevron-right"></span></a>
+          
             </div>
             
             <div class="col-xs-4">
                 <h2>Créer un compte</h2>
                 <p>Créer un compter pour ce site.</p>
-                <p><a href="new_user.php" class="btn btn-success">Entrer  &raquo;</a></p>
+				<a href="new_user.php" class="btn btn-block btn-primary">S'enregistrer  <span class="glyphicon glyphicon-pencil"></span> </a>
+       
             </div>
         </div>
         

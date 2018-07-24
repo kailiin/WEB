@@ -34,16 +34,25 @@
 </head>
 <body>
     <nav role="navigation" class="navbar navbar-inverse">
+		<div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="sco_accueille.php"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
-                <li><a href="sco_consultation.php">Consultations</a></li>
-                <li><a href="sco_gestion.php">Gestions</a></li> 
+                <li><a href="sco_accueille.php"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+                <li><a href="sco_consultation.php"><span class="glyphicon glyphicon-search"></span>  Consultations</a></li>
+                <li><a href="sco_gestion.php"><span class="glyphicon glyphicon-edit"></span>  Gestions</a></li> 
             </ul>
+			
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="logout.php">Quitter</a></li>
+                <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>   Quitter</a></li>
             </ul>
-            
         </div>
- 
+
     </nav>

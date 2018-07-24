@@ -1,33 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Suppression d'un module</title>
+
+</head>
+
+<body>
+
 <?php
+	include("includeboostrap.php");	
 include("sco_auth.php");
-include("sco_header.php");
-$page_title = "Suppression module";
+$uid = $auth->userid;  
+$droit = false;        
+  // verifier le droit d'accéder      
+require("db_config.php");
+$db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8", $username, $password);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$SQL = "SELECT * FROM users WHERE userid=$uid AND type='sco' " ;
+$res = $db->query($SQL);        
+    if ($res->rowCount()==0) $droit=false;
+        else{
+            $droit=true;
+            }
+              
+        if( $droit){
+            include("sco_header.php");
+// fin de verif 
+            
 
 if (!isset($_GET["mid"])) {
 echo "<p>Erreur</p>\n";
 }else if (!isset($_POST["supprimer"]) && !isset($_POST["annuler"]) ){
-include("sco_sup_form.php");
+include("sco_sup_module_from.php");
 } else if (isset($_POST["annuler"])){
-echo "Operation annulée <br>";
+     ?>
+             <div class="alert alert-info">
+                 <div align = 'center'>
+                     <h2><strong>Operation annulée!</strong> <br /></h2>
+                     <p><a href="sco_liste_module.php" class="btn btn-info">Retourner vers la liste </a></p>
+                     <p><a href="sco_gestion.php" class="btn btn-info">Page de gestion </a></p>
+                </div>
+            </div>
+             <?php
 }else{
-    require("db_config.php");
     $mid = $_GET["mid"];
-    try {
-    $db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8", $username, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);      
+    try {    
     $SQL = "DELETE FROM modules WHERE mid=?";
     $st = $db->prepare($SQL);
     $st->execute(array($mid));
     if ($st->rowCount() ==0)
         echo "<p>Erreur de suppression<p>\n";
-    else echo "<p>La suppression a été effectuée</p>";
+    else{
+        $SQL = "SELECT gid FROM groupes WHERE mid=$mid";
+        $res = $db->query($SQL);
+        if ($res->rowCount()!=0){
+            while($row=$res->fetch()) {
+            $gid=$row['gid'];
+        
+            $SQL = "DELETE FROM notes WHERE gid=?";
+            $st = $db->prepare($SQL);
+            $st->execute(array($gid));
+        
+            $SQL = "DELETE FROM affectations WHERE gid=?";
+            $st = $db->prepare($SQL);
+            $st->execute(array($gid));
+                
+            $SQL = "DELETE FROM groupes WHERE gid=?";
+            $st = $db->prepare($SQL);
+            $st->execute(array($gid));                
+            }
+        }
+    }
+       ?>
+             <div class="alert alert-info">
+                 <div align = 'center'>
+                     <h2><strong>La suppression a été effectuée!</strong> <br /></h2>
+                     <p><a href="sco_liste_module.php" class="btn btn-info">Retourner vers la liste </a></p>
+                     <p><a href="sco_gestion.php" class="btn btn-info">Page de gestion </a></p>
+                </div>
+            </div>
+             <?php
     $db=null;
     }catch (PDOException $e){
     echo "Erreur SQL: ".$e->getMessage();
     }
 }
-echo "<a href='sco_liste_module.php'>Revenir à la page liste de module</a>";
-//include("footer.php");
+            }else{
+                       	  ?>
+<div class="alert alert-danger">
+    <div align = 'center'>
+<strong><h1>Attention!</h1></strong> <br />
+		<h2>Vous n'avez pas le droit d'accéder !!!</h2><br />
+		<a href="index.php" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-home"></span> Accueille</a>
+    </div>
+</div>
+<?php
+         }
+include("footer.php");
 ?>
-
 

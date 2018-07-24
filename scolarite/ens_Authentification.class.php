@@ -10,6 +10,7 @@ class Authentification {
     
     public $userid;
     public $username;
+    public $droit='ens';
     
     private $redirect;
     

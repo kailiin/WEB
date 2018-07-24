@@ -4,12 +4,13 @@ class Authentification {
     private $nameUser = "login";
     private $namePassword = "password";
     
-    private $sql = "SELECT * FROM users WHERE login=:login AND mdp=:password AND type='ens'";
+    private $sql = "SELECT * FROM users WHERE login=:login AND mdp=:password ";
     
     private $handle;
     
     public $userid;
     public $username;
+      public $droit;
     
     private $redirect;
     
@@ -40,6 +41,7 @@ class Authentification {
             if($res){
                 $this->userid = $res['userid'];
                 $this->username = $res['login'];
+                $this->droit = $res['type'];
                 $session["AUTH_TOKEN"] = md5($request[$this->nameUser].time());
                 $session['AUTH_USER_ID'] = $this->userid;
                 $session['AUTH_USER_LOGIN'] = $this->username;

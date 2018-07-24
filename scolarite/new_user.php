@@ -1,10 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Ajout utilisateur</title>
+</head>
+
+<body>
+	
 <?php
 include 'db_config.php';
 require 'Authentification.class.php';
 
 $db = new PDO("mysql:hostname=$hostname;dbname=$dbname",$username,$password);
 
-$page_title = "Ajout utilisateur";
 include("header.php");
 
 //Récupération des données
@@ -12,7 +21,6 @@ if (!isset($_POST["login"]) || !isset($_POST["password"]) ||
     !isset($_POST["password2"])||!isset($_POST["nom"]) ||!isset($_POST["prenom"]) ||!isset($_POST["email"]) ||!isset($_POST["type"]) ){
 //    echo "<p>Erreur dans les données\n";
     include("reg_form.php");
-    include("footer.php");
    exit();
 }
 
@@ -20,15 +28,19 @@ if (!isset($_POST["login"]) || !isset($_POST["password"]) ||
 if ($_POST["password"] != $_POST["password2"]){
     echo "<p>Mots de passe différents\n";
    include("reg_form.php");
-   include("footer.php");
    exit();
 }
 
 // Vérification des données
 if(empty(trim($_POST['nom'])) || empty(trim($_POST['prenom'])) || empty(trim($_POST['login']))  || empty(trim($_POST['email'])) || empty(trim($_POST['type'])) ){
-    echo "<p>Erreur dans les données\n";
+		  ?>
+<div class="alert alert-warning">
+    <div align = 'center'>
+<strong>Attention!</strong> Erreur dans les données <br />
+    </div>
+</div>
+<?php
    include("reg_form.php");
-   include("footer.php");
    exit();    
 }
 
@@ -42,9 +54,14 @@ if(empty(trim($_POST['nom'])) || empty(trim($_POST['prenom'])) || empty(trim($_P
   $row = $st->fetch();
 
   if($row){
-    echo "<p>Le login existe déjà\n";
+	  ?>
+<div class="alert alert-warning">
+    <div align = 'center'>
+<strong>Attention!</strong> Le login existe déjà <br />
+    </div>
+</div>
+<?php
     include("reg_form.php"); 
-    include("footer.php");
     exit(); 
   } 
 
@@ -56,9 +73,15 @@ if(empty(trim($_POST['nom'])) || empty(trim($_POST['prenom'])) || empty(trim($_P
   if (!$res) die('Error: '); 
   
   $db=null; 
+    ?>
+             <div class="alert alert-success">
+                 <div align = 'center'>
+                     <h2><strong>Utilisateur <?php echo "$_POST[login]"; ?> a été ajouté</strong> <br /></h2>
+                     <p><a href="index.php" class="btn btn-success">Accueille </a></p>
+                </div>
+            </div>
+             <?php
 
-  echo "<p>Utilisateur $_POST[login] ajouté.\n";
-  echo "<p><a href='index.php'>Revenir à la page d'accueil</a>\n";
-  include("footer.php");
+ include("footer.php");
 
 ?>
