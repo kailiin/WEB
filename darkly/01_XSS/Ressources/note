@@ -1,0 +1,6 @@
+Cross-site scripting (XSS)
+
+ex: dans FeedBack -> Message: <strong>
+
+Protection:
+PHP: htmlspecialchars() qui filtre les ‘<‘ et ‘>’ ou htmlentities() qui filtre toutes les entités html

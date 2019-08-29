@@ -1,0 +1,4 @@
+Dans cookies, on a I_an_admin et on peut changer la value!
+Si on decrypt la valeur de base en MD5 on a 'false' donc si on crypte true on trouve b326b5062b2f0e69046810717534cb09
+
+-> change la valeur et refresh
