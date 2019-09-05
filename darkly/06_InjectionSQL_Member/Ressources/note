@@ -30,3 +30,27 @@ commentaire: Decrypt this password -> then lower all the char. Sh256 on it and i
 countersign: 5ff9d0165b4f92b14994e5c685cdce28
 
 on decrypt 5ff9d0165b4f92b14994e5c685cdce28 en md5 puis on met tous en minuscule et on crypte en sha256!
+
+
+Protection:
+    - la fonction "mysqli_real_escape_string()" qui échapper les caractères spéciaux.
+    mysqli_real_escape_string($_POST["password"])
+
+    - Gérer les droits de connexion à la base de donnée.
+
+    - Filtrer les expressions régulières, par exemple, si y a les mots clés « union, select ».
+
+    - Utiliser des requêtes préparées:
+
+    $id = $_POST['id'];
+
+    // Requête SQL non sécurisée
+    $req = $bdd->query("SELECT * FROM users WHERE login='$id'");
+
+    // Requête SQL sécurisée
+    $req = $bdd->prepare("SELECT * FROM users WHERE id= ?");
+    $req->execute(array($id));
+
+
+https://www.sebastien-gandossi.fr/blog/injections-sql#se-protger
+https://openclassrooms.com/en/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2680180-linjection-sql

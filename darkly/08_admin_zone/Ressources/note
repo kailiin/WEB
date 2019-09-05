@@ -1,0 +1,30 @@
+On check le fichier robots.txt
+
+On trouve :
+User-agent: *
+Disallow: /whatever
+Disallow: /.hidden
+
+Dans http://192.168.208.128/whatever/ on peut voir un fichier htpasswd.
+Dand ce fichier on a : root:8621ffdbc5698829397d97767ac13db3
+On decrypt en MD5 et on trouve root:dragon
+
+On test s'il existe des liens comme /admin  /root ....
+http://192.168.208.128/admin
+Et on se log.
+
+
+Protection:
+On met pas nos mot de passe dans le fichier robots.txt!!
+Le robots.txt sert à contrôler quelles zones de son site un robot d'indexation est autorisé à analyser!
+
+Exemple pour empêche les robots de télécharger toutes les images de votre site :
+
+User-agent: *
+Disallow: /*.jpg$
+Disallow: /*.png$
+Disallow: /*.gif$
+Disallow: /images/
+
+
+Plus information: https://www.yakaferci.com/robotstxt/
