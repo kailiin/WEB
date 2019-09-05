@@ -1,0 +1,16 @@
+https://fr.wikipedia.org/wiki/Liste_des_mots_de_passe_les_plus_courants
+
+On test de brute force login avec les mots de passe les plus courants et comme login "admin"
+
+on execute le script et on trouve :
+
+<center><h2 style="margin-top:50px;">The flag is : b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2 </h2><br/><img src="images/win.png" alt="" width=200px height=200px></center>				</div>
+
+
+Protection:
+    https://openclassrooms.com/en/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2680183-lattaque-par-force-brute
+  
+    - La vérification par captcha
+    - Bannissement d'IP (limiter le nombre de tentatives)
+
+Ou changer de mot de passe avec au moins 12 caractères et 4 types différents : des minuscules, des majuscules, des chiffres et des caractères spéciaux. 
