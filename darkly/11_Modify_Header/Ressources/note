@@ -1,0 +1,11 @@
+Dans heade=> /?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c
+
+si on inspect la page, dans la partie commentaire on trouve :
+
+<!-- You must cumming from : "https://www.nsa.gov/" to go to the next step -->
+<!-- Let's use this browser : "ft_bornToSec". It will help you a lot. -->
+
+A l'aide de 'ModHeader', on ajoute 'Referer' = https://www.nsa.gov/ et 'User-Agent' = ft_bornToSec
+puis on reload la page!
+
+THE FLAG IS : F2A29020EF3132E01DD61DF97FD33EC8D7FCD1388CC9601E7DB691D17D4D6188
