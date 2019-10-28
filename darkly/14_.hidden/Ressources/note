@@ -1,0 +1,10 @@
+Dans /.hidden trouvé grace au robots.txt
+
+Il contient un fichier README et des sous-répertoire contenant eux-mêmes un fichier README et d'autres sous-répertoire.
+
+On utilise la commande wget pour creer un script qui va recuperer tout les fichier README dans /.hidden
+
+On regarde ensuite les README avec cat et grep.
+
+https://doc.ubuntu-fr.org/wget
+https://stackoverflow.com/questions/15930407/how-can-i-do-foreach-mp3-file-recursively-in-a-bash-script

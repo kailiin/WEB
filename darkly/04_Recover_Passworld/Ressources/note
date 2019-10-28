@@ -1,5 +1,5 @@
-Dans Login -> I fogot my password si on inspect le site, on trouve en haut de 'SUBMIT' un input de type hidden, un name  mail et un value: adresse mail
+Dans Login -> I fogot my password, si on inspect le site, on trouve en haut de 'SUBMIT' un input de type hidden, un name  mail et un value: adresse mail
 
-On peut supprimer 'hidden' ou changer directement l'adresse mail.  
+On peut supprimer 'hidden' ou changer directement l'adresse mail.
 
 Protection: on utilise le mail lier au username.

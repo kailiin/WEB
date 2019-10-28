@@ -15,7 +15,7 @@ Et on se log.
 
 
 Protection:
-On met pas nos mot de passe dans le fichier robots.txt!!
+On met pas les mots de passe dans le fichier robots.txt!!
 Le robots.txt sert à contrôler quelles zones de son site un robot d'indexation est autorisé à analyser!
 
 Exemple pour empêche les robots de télécharger toutes les images de votre site :
